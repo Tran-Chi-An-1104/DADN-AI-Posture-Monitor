@@ -20,7 +20,7 @@ Follow these steps to get the app running on your local machine in under a minut
 Open your Command Prompt or PowerShell, then copy and paste this entire block:
 
 ```cmd
-git clone <your_github_repo_link_here>
+git clone https://github.com/zKdKaidO/AI-Posture-Monitor.git
 cd AI-Posture-Monitor
 python -m venv venv
 venv\Scripts\activate

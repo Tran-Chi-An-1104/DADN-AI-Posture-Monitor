@@ -1,3 +1,4 @@
 ultralytics==8.4.21
 streamlit
 opencv-python
+pyserial

@@ -4,9 +4,10 @@
 #include "TaskLCD.h"
 #include "TaskReceiveAI.h"
 #include "TaskFace.h"
+#include "TaskIOTClient.h"
 
-const int LDR_PIN = 34;
-const int LED_PIN = 25;
+const int LDR_PIN = 34; //34
+const int LED_PIN = 25; //25
 const int BUZZER_PIN = 26;
 
 volatile int globalLightValue = 0;
@@ -16,6 +17,7 @@ SemaphoreHandle_t serialMutex;
 
 void setup() {
     Serial.begin(115200);
+    delay(2000);
     serialMutex = xSemaphoreCreateMutex();
 
     pinMode(BUZZER_PIN, OUTPUT);
@@ -25,6 +27,7 @@ void setup() {
     xTaskCreatePinnedToCore(taskSensorAndLED, "Task_Sensor_LED", 4096, NULL, 1, NULL, 1);
     xTaskCreatePinnedToCore(taskLCD, "Task_LCD", 4096, NULL, 1, NULL, 0);
     xTaskCreatePinnedToCore(taskFace, "Task_Face", 4096, NULL, 1, NULL, 0);
+    xTaskCreatePinnedToCore(taskIOTClient, "Task_IOT", 8192, NULL, 1, NULL, 0);
 }
 
 void loop() {

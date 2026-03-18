@@ -9,7 +9,7 @@ void taskSensorAndLED(void *pvParameters) {
     ledcSetup(PWM_CHANNEL, PWM_FREQ, PWM_RES);
     ledcAttachPin(LED_PIN, PWM_CHANNEL);
 
-    int printCounter = 0; // Bộ đếm để giảm tốc độ in Serial
+    int printCounter = 0; 
 
     for (;;) {
         int currentLight = analogRead(LDR_PIN);
@@ -24,12 +24,11 @@ void taskSensorAndLED(void *pvParameters) {
         // Cứ mỗi 10 vòng lặp (10 * 50ms = 500ms) thì in log 1 lần
         printCounter++;
         if (printCounter >= 10) {
-            // Lấy chìa khóa Mutex (Chờ tối đa portMAX_DELAY)
             if (xSemaphoreTake(serialMutex, portMAX_DELAY) == pdTRUE) {
                 Serial.printf("[CORE 1 - SENSOR] Lux: %d | PWM: %d\n", currentLight, calculatedPwm);
-                xSemaphoreGive(serialMutex); // In xong trả lại chìa khóa
+                xSemaphoreGive(serialMutex); 
             }
-            printCounter = 0; // Reset bộ đếm
+            printCounter = 0; 
         }
 
         vTaskDelay(pdMS_TO_TICKS(50));

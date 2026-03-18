@@ -3,7 +3,6 @@
 
 #include <Arduino.h>
 
-// Khai báo tên hàm Task
 void taskSensorAndLED(void *pvParameters);
 
 #endif

@@ -3,24 +3,28 @@
 #include "TaskSensorLED.h"
 #include "TaskLCD.h"
 #include "TaskReceiveAI.h"
+#include "TaskFace.h"
 
 const int LDR_PIN = 34;
 const int LED_PIN = 25;
+const int BUZZER_PIN = 26;
 
 volatile int globalLightValue = 0;
 volatile int globalPwmValue = 0;
-String globalCmd = "AUTO";
-
-// Định nghĩa biến Mutex
+String globalCmd = "...";
 SemaphoreHandle_t serialMutex;
 
 void setup() {
     Serial.begin(115200);
     serialMutex = xSemaphoreCreateMutex();
+
+    pinMode(BUZZER_PIN, OUTPUT);
+    digitalWrite(BUZZER_PIN, LOW);
     
     xTaskCreatePinnedToCore(taskReceiveAI, "Task_Receive_AI", 4096, NULL, 1, NULL, 1);
     xTaskCreatePinnedToCore(taskSensorAndLED, "Task_Sensor_LED", 4096, NULL, 1, NULL, 1);
     xTaskCreatePinnedToCore(taskLCD, "Task_LCD", 4096, NULL, 1, NULL, 0);
+    xTaskCreatePinnedToCore(taskFace, "Task_Face", 4096, NULL, 1, NULL, 0);
 }
 
 void loop() {

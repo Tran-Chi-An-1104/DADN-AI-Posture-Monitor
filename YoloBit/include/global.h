@@ -7,6 +7,7 @@
 
 extern const int LDR_PIN;
 extern const int LED_PIN;
+extern const int BUZZER_PIN;
 
 extern volatile int globalLightValue;   
 extern volatile int globalPwmValue;     

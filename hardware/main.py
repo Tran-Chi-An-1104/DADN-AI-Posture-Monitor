@@ -13,17 +13,17 @@ while True:
         if data:
             char = chr(data[0])
             
-            # --- XỬ LÝ LỆNH ---
-            if char == '1': # SITTING_BAD
-                display.show(Image.SAD)    # Hiện mặt mếu
-                pin0.write_digital(1)      # Kích điện chân số 0 (Còi kêu)
-                
-            elif char == '0': # SITTING_GOOD
-                display.show(Image.HAPPY)  # Hiện mặt cười
-                pin0.write_digital(0)      # Ngắt điện chân số 0 (Còi tắt)
-                
-            elif char == '2': # EMPTY (Không có người)
-                display.clear()            # Tắt sạch màn hình LED
-                pin0.write_digital(0)      # Tắt còi
+            # --- XỬ LÝ LỆNH (khớp app.py / yolobit: 0=IDLE, 1=GOOD, 2=BAD) ---
+            if char == '0':  # IDLE
+                display.show(Image.CONFUSED)
+                pin0.write_digital(0)
+
+            elif char == '1':  # GOOD
+                display.show(Image.HAPPY)
+                pin0.write_digital(0)
+
+            elif char == '2':  # BAD
+                display.show(Image.SAD)
+                pin0.write_digital(1)
                 
     sleep(100) # Nghỉ 100ms cho mạch đỡ nóng

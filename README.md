@@ -137,8 +137,8 @@ A lightweight alternative to `yolobit.py` for standard Micro:bit boards. Listens
 
 ```bash
 # Clone the repository
-git clone https://github.com/Tran-Chi-An-1104/DADN-AI-Posture-Monitor.git
-cd DADN-AI-Posture-Monitor
+git clone https://github.com/zKdKaidO/AI-Posture-Monitor.git
+cd AI-Posture-Monitor
 
 # Create & activate a virtual environment
 python -m venv venv
@@ -206,4 +206,4 @@ The serial link between `app.py` and the YoloBit board uses **115200 baud**, tra
 
 ## 📄 License
 
-This project was developed as part of the **DADN (Đồ án đa ngành)** course at HCMUT.
+This project was developed as part of the **Multidisciplinary Project** course at HCMUT.
